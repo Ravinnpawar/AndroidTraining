@@ -1,5 +1,6 @@
 package com.mobileappguru.androidtraining
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -45,6 +46,13 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     fun saveInfo(view: View) {
-        Toast.makeText(this, "First Name: "+firstNameTextInputEditText.text+"\nLast Name: "+lastNameTextInputEditText.text+"\nPhone Number: "+phoneTextInputEditText.text, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "First Name: "+firstNameTextInputEditText.text+"\nLast Name: "+lastNameTextInputEditText.text+"\nPhone Number: "+phoneTextInputEditText.text, Toast.LENGTH_SHORT).show()
+        if (!firstNameTextInputEditText.text.isNullOrEmpty()){
+            val intent=Intent(this,LayoutsExampleActivity::class.java)
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(this, "Enter First Name", Toast.LENGTH_SHORT).show()
+        }
     }
 }
