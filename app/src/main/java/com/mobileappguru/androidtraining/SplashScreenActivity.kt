@@ -13,7 +13,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Log.i(localClassName,"On Splash Screen")
         Handler().postDelayed({
-            startActivity(Intent(this,ProfileActivity::class.java))
+            startActivity(Intent(this,WelcomeActivity::class.java))
             Log.i(localClassName,"" +
                     "Running Handler")
             finish()

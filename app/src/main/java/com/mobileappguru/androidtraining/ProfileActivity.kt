@@ -1,6 +1,8 @@
 package com.mobileappguru.androidtraining
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -21,6 +23,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var firstNameTextInputEditText: TextInputEditText
     private lateinit var lastNameTextInputEditText: TextInputEditText
     private lateinit var phoneTextInputEditText: TextInputEditText
+    private lateinit var sharedPref:SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -29,7 +32,8 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        sharedPref=getSharedPreferences("MyPreferences",Context.MODE_PRIVATE)
+        //setSupportActionBar(binding.toolbar)
 
         firstNameTextInputEditText=findViewById(R.id.firstname)
         lastNameTextInputEditText=findViewById(R.id.lastname)
@@ -47,8 +51,15 @@ class ProfileActivity : AppCompatActivity() {
 
     fun saveInfo(view: View) {
         //Toast.makeText(this, "First Name: "+firstNameTextInputEditText.text+"\nLast Name: "+lastNameTextInputEditText.text+"\nPhone Number: "+phoneTextInputEditText.text, Toast.LENGTH_SHORT).show()
+        val editor=sharedPref.edit()
+        editor.putString("firstName",firstNameTextInputEditText.text.toString())
+        editor.putString("lastName",lastNameTextInputEditText.text.toString())
+        editor.putString("phoneNumber",phoneTextInputEditText.text.toString())
+        editor.apply()
+
         if (!firstNameTextInputEditText.text.isNullOrEmpty()){
-            val intent=Intent(this,LayoutsExampleActivity::class.java)
+
+            val intent=Intent(this,WelcomeActivity::class.java)
             startActivity(intent)
         }
         else{
