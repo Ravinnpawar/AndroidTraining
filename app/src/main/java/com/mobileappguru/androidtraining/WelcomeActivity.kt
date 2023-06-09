@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -17,17 +18,27 @@ import android.widget.Button
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import com.mobileappguru.receiver.PowerConnectReceiver
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+
+//Braodcast Receiver--
+//-Static broadcast receiver
+//-Dynamic BR-
+//method to register BR-- registerReceiver()
+//intentfilter
+//
 class WelcomeActivity : AppCompatActivity() {
+
+
     private lateinit var firstNameTextview: TextView
     private lateinit var lastNameTextview: TextView
     private lateinit var phoneNumber: TextView
     private lateinit var timeTextView: TextView
     private lateinit var dateTextView: TextView
-
     private lateinit var timeButton: Button
     private lateinit var dateButton: Button
     private lateinit var alertButton: Button
@@ -37,11 +48,12 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var emailButton: Button
     private lateinit var sendSMSButton: Button
     private lateinit var mapButton: Button
-
+    private lateinit var recyclerViewButton: Button
 
     private val calendar=Calendar.getInstance()
-
     private lateinit var sharedPref:SharedPreferences
+
+    private val powerConnectReceiver =PowerConnectReceiver()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
@@ -62,6 +74,7 @@ class WelcomeActivity : AppCompatActivity() {
         emailButton=findViewById(R.id.button_email)
         sendSMSButton=findViewById(R.id.button_text)
         mapButton=findViewById(R.id.button_map)
+        recyclerViewButton=findViewById(R.id.button_recycleview)
 
 
         timeButton.setOnClickListener {
@@ -115,12 +128,20 @@ class WelcomeActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+        recyclerViewButton.setOnClickListener{
+            val intent=Intent(this,RecyclerViewActivity::class.java)
+            startActivity(intent)
+        }
 
         sharedPref=getSharedPreferences("MyPreferences",Context.MODE_PRIVATE)
-
         firstNameTextview.text=sharedPref.getString("firstName","")
         lastNameTextview.text=sharedPref.getString("lastName","")
         phoneNumber.text=sharedPref.getString("phoneNumber","")
+
+        val intentFilter =IntentFilter()
+        intentFilter.addAction(Intent.ACTION_POWER_CONNECTED)
+        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED)
+        registerReceiver(powerConnectReceiver,intentFilter)
 
     }
 
@@ -197,5 +218,11 @@ class WelcomeActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        unregisterReceiver(powerConnectReceiver)
     }
 }

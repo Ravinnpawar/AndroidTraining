@@ -49,4 +49,19 @@
     </string>
     <string name="todo_something">TODO Something</string>
     <string name="hello_i_am_ajay">Hello I am Ajay</string>
+
+    <array name="names">
+        <item>Ajay</item>
+        <item>Mahesh</item>
+        <item>Surehs</item>
+        <item>Anand</item>
+        <item>Ravi</item>
+        <item>Vijay</item>
+        <item>Surehs</item>
+        <item>Ajay2</item>
+        <item>Anand</item>
+        <item>Ajay2</item>
+        <item>Mahesh</item>
+        <item>Ajay2</item>
+    </array>
 </resources>
