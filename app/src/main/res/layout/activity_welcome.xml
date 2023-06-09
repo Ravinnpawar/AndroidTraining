@@ -194,6 +194,28 @@
             android:textStyle="bold">
 
         </Button>
+
+        <Button
+            android:id="@+id/button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send TEST SMS"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold">
+
+       </Button>
+
+        <Button
+            android:id="@+id/button_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show the Map"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold">
+
+        </Button>
     </LinearLayout>
 
 </RelativeLayout>

@@ -35,6 +35,10 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var toastButton: Button
     private lateinit var webviewButton: Button
     private lateinit var emailButton: Button
+    private lateinit var sendSMSButton: Button
+    private lateinit var mapButton: Button
+
+
     private val calendar=Calendar.getInstance()
 
     private lateinit var sharedPref:SharedPreferences
@@ -56,6 +60,9 @@ class WelcomeActivity : AppCompatActivity() {
         toastButton=findViewById(R.id.button_toast)
         webviewButton=findViewById(R.id.button_webview)
         emailButton=findViewById(R.id.button_email)
+        sendSMSButton=findViewById(R.id.button_text)
+        mapButton=findViewById(R.id.button_map)
+
 
         timeButton.setOnClickListener {
             showtimePickerDialog()
@@ -92,6 +99,21 @@ class WelcomeActivity : AppCompatActivity() {
             }else {
                 Toast.makeText(this, "No Email Application", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        sendSMSButton.setOnClickListener{
+            val intent=Intent(Intent.ACTION_SENDTO).apply {
+                data=Uri.parse("smsto:1234567890")
+                putExtra("sms_body", "Hello This is SMS Example")
+            }
+            startActivity(intent)
+        }
+        mapButton.setOnClickListener{
+            val uri=Uri.parse("geo:37.7749,122.4194?q=San Fransisco")
+            val intent=Intent(Intent.ACTION_VIEW,uri)
+
+            startActivity(intent)
+
         }
 
         sharedPref=getSharedPreferences("MyPreferences",Context.MODE_PRIVATE)
