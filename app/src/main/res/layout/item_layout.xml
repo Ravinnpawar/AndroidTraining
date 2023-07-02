@@ -5,8 +5,35 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/item_text"
+        android:id="@+id/api_name"
         android:layout_width="wrap_content"
+        android:text="Sample Text"
+        android:textSize="20dp"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <TextView
+        android:id="@+id/api_desc"
+        android:layout_below="@+id/api_name"
+        android:layout_width="wrap_content"
+        android:text="Sample Text"
+        android:textSize="20dp"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <TextView
+        android:id="@+id/api_link"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/api_desc"
+        android:text="Sample Text"
+        android:textSize="20dp"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <TextView
+        android:id="@+id/api_category"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/api_link"
         android:text="Sample Text"
         android:textSize="20dp"
         android:layout_height="wrap_content">

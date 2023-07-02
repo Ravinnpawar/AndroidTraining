@@ -64,4 +64,9 @@
         <item>Mahesh</item>
         <item>Ajay2</item>
     </array>
+    <string-array name="my_data_array">
+        <item>1,John,25</item>
+        <item>2,Alice,30</item>
+        <item>3,Michael,28</item>
+    </string-array>
 </resources>

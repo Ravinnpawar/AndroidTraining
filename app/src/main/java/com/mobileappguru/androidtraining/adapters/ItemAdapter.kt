@@ -6,11 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileappguru.androidtraining.R
+import com.mobileappguru.data.Entry
 
-class ItemAdapter(private val data :Array<String>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+class ItemAdapter(private val data: Array<Entry>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView){
-        val textView :TextView=itemView.findViewById(R.id.item_text)
+        val textViewName :TextView=itemView.findViewById(R.id.api_name)
+        val textViewDesc :TextView=itemView.findViewById(R.id.api_desc)
+        val textViewLink :TextView=itemView.findViewById(R.id.api_link)
+        val textViewCategory :TextView=itemView.findViewById(R.id.api_category)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -24,6 +28,9 @@ class ItemAdapter(private val data :Array<String>) : RecyclerView.Adapter<ItemAd
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
        val item= data[position]
-        holder.textView.text=item
+        holder.textViewName.text=item.API
+        holder.textViewDesc.text=item.Description
+        holder.textViewLink.text=item.Link
+        holder.textViewCategory.text=item.Category
     }
 }
